@@ -1,7 +1,24 @@
-from queue import Queue
+'''
+Next, Tom needs to write a MyQueueueSized() class that accepts the max_size
+parameter, which means the maximum number of elements in the queue.
+
+Input format
+The first line contains one number - the number of commands. The second line
+contains the maximum allowed queue size Then come the commands, one per line.
+Commands can be of the following types:
+push x - add number x to the queue
+pop - delete a number from the queue and print it
+peek - print the first number in the queue
+size - return the size of the queue
+
+If the allowed queue size is exceeded, "error" needs to be printed.
+When calling the pop operation for an empty queue, you should return None.
+If the queue is empty, type None for the peek command.
+If the queue is deleted from an empty one, type None.
+'''
 
 
-class MyQueue:
+class MyQueueSized:
     def __init__(self, n):
         self.queue = [None for _ in range(n)]
         self.max_n = n
@@ -50,7 +67,7 @@ def solution():
         new_list.append(0)
         new_list[i] = []
 
-    queue = MyQueue(n)
+    queue = MyQueueSized(n)
     while count <= amount:
         for k in range(amount):
             new_list[k] = list(map(str, input().split()))
