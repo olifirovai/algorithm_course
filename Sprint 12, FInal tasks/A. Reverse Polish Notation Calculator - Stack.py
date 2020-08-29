@@ -1,4 +1,20 @@
-class Stack:
+'''
+Reverse Polish Notation Calculator. It is applied to parsing arithmetic
+expressions. In contrast to another method used for this problem - using the
+operation tree, it is more compact because it does not use brackets.
+
+Input format
+A single line contains an expression written in reverse Polish notation.
+The numbers and arithmetic operations separated by spaces.
+The input may contain the following operations: +, -, *, / and numbers not
+exceeding 10000 by module.
+
+Output format
+The single number is the value of the expression.
+'''
+
+
+class StackCalculator:
     def __init__(self):
         self.items = []
 
@@ -65,7 +81,7 @@ def make_digits(data):
 
 
 def stack_calculator():
-    stack = Stack()
+    stack = StackCalculator()
     input_data = list(map(str, input().split()))
     for element in make_digits(input_data):
         if isinstance(element, int):
