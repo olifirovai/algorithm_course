@@ -1,69 +1,77 @@
-from queue import Queue
+class Stack:
+    def __init__(self):
+        self.items = []
 
-
-class MyQueue:
-    def __init__(self, n):
-        self.queue = [None for _ in range(n)]
-        self.max_n = n
-        self.head = 0
-        self.tail = 0
-        self.size = 0
-
-    def is_empty(self):
-        return self.size == 0
-
-    def push(self, x):
-        if self.size != self.max_n:
-            self.queue[self.tail] = x
-            self.tail = (self.tail + 1) % self.max_n
-            self.size += 1
-        else:
-            print('error')
-
-    def peek(self):
-        if self.is_empty():
-            print('None')
-        else:
-            x = self.queue[self.head]
-            print(x)
-
-    def get_size(self):
-        print(self.size)
+    def push(self, item):
+        self.items.append(item)
 
     def pop(self):
-        if self.is_empty():
-            print('None')
+        if len(self.items) == 0:
+            return None
         else:
-            x = self.queue[self.head]
-            self.queue[self.head] = None
-            self.head = (self.head + 1) % self.max_n
-            self.size -= 1
-            print(x)
+            self.items.pop()
+
+    def adding(self):
+        if len(self.items) < 1:
+            return None
+        self.items[0] = self.items[0] + self.items[1]
+        self.items.pop()
+        return self.items
+
+    def multiplication(self):
+        if len(self.items) < 1:
+            return None
+        self.items[0] = self.items[0] * self.items[1]
+        self.items.pop()
+        return self.items
+
+    def subtract(self):
+        if len(self.items) < 1:
+            return None
+        self.items[0] = self.items[0] - self.items[1]
+        self.items.pop()
+        return self.items
+
+    def division(self):
+        if len(self.items) < 1:
+            return None
+        self.items[0] = self.items[0] // self.items[1]
+        self.items.pop()
+        return self.items
+
+    def print_stack(self):
+        if len(self.items) == 0:
+            return None
+        for i in range(len(self.items)):
+            self.items[i] = int(self.items[i])
+        print(*self.items)
 
 
-def solution():
-    amount = int(input())
-    n = int(input())
-    count = 1
-    new_list = []
-    for i in range(amount):
-        new_list.append(0)
-        new_list[i] = []
+def make_digits(data):
+    for i in range(len(data)):
+        try:
+            data[i] = int(float(data[i]))
+        except ValueError:
+            pass
+    return data
 
-    queue = MyQueue(n)
-    while count <= amount:
-        for k in range(amount):
-            new_list[k] = list(map(str, input().split()))
-            count += 1
-    for m in range(amount):
-        if new_list[m][0] == 'size':
-            queue.get_size()
-        elif new_list[m][0] == 'pop':
-            queue.pop()
-        elif new_list[m][0] == 'peek':
-            queue.peek()
+
+def stack_calculator():
+    stack = Stack()
+    input_data = list(map(str, input().split()))
+    for element in make_digits(input_data):
+        if isinstance(element, int):
+            stack.push(element)
+        elif element == '+':
+            stack.adding()
+        elif element == '-':
+            stack.subtract()
+        elif element == '*':
+            stack.multiplication()
         else:
-            queue.push(int(float(new_list[m][1])))
+            stack.division()
+
+    return stack.print_stack()
 
 
-solution()
+stack_calculator()
