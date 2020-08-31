@@ -13,6 +13,7 @@ Output format
 The single number is the value of the expression.
 '''
 
+#номер успешной посылки: 33894838
 
 class StackCalculator:
     def __init__(self):
