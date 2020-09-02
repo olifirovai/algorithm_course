@@ -1,21 +1,48 @@
-class Node:
-    def __init__(self, value, next=None):
-        self.value = value
-        self.next = next
-
-    def __repr__(self):
-        return self.value
+'''
 
 
-def hasCycle(node):
-    if node is None:
-        return False
-    one_step = node
-    two_step = node
-    while (one_step and two_step and two_step.next):
-        one_step = one_step.next
-        two_step = two_step.next.next
-        if one_step == two_step:
-            return True
-    return False
 
+'''
+
+
+class Schedule:
+    def __init__(self, time_list):
+        self.classes = []
+        self.start_time = time_list[0]
+        self.end_time = time_list[1]
+
+    def add_class(self):
+        self.classes.append([self.start_time, self.end_time])
+
+    def find_earliest_class(self):
+        earliest_class = []
+        while True:
+            for i in range(len(self.classes)):
+                early_class = []
+                if self.classes[i][1] == self.classes[i][0]:
+                    schedule_list.append(self.classes[i])
+                if i == 0:
+                    early_class = self.classes[i]
+                if early_class[1] < self.classes[i][1]:
+                    early_class = self.classes[i]
+                elif early_class[1] == self.classes[i][1]:
+                    early_class = min(early_class[0], self.classes[i][1])
+
+    def make_schedule(self):
+
+        pass
+
+
+schedule_list = []
+
+
+def main():
+    amount = int(input())
+    for obj in range(amount):
+        data = list(map(float, input().split()))
+        obj = Schedule(data)
+        obj.add_class()
+
+
+if __name__ == '__main__':
+    main()

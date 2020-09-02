@@ -1,12 +1,6 @@
-10
-1
-push 1
-size
-push 3
-size
-push 1
-pop
-push 1
-pop
-push 3
-push 3
+5
+9 10
+9.3 10.3
+10 11
+10.3 11.3
+11 12
