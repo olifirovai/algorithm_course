@@ -13,19 +13,12 @@ Output format
 The single number is the value of the expression.
 '''
 
-# номер успешной посылки: 33894838
 
-import sys
-
+# номер успешной посылки: 33992198
 
 class StackCalculator:
     def __init__(self):
         self.items = []
-        self.action_dict = {'+': 'adding',
-                            '-': 'subtract',
-                            '*': 'multiplication',
-                            '/': 'division',
-                            }
 
     def is_empty(self):
         return len(self.items) == 0
@@ -38,38 +31,45 @@ class StackCalculator:
             return None
         self.items.pop()
 
-    def adding(self):
-        second_operand = self.items.pop()
-        first_operand = self.items.pop()
+    def adding(self, first_operand, second_operand):
         result = first_operand + second_operand
         self.items.append(result)
         return self.items
 
-    def multiplication(self):
-        second_operand = self.items.pop()
-        first_operand = self.items.pop()
+    def multiplication(self, first_operand, second_operand):
         result = first_operand * second_operand
         self.items.append(result)
         return self.items
 
-    def subtract(self):
-        second_operand = self.items.pop()
-        first_operand = self.items.pop()
+    def subtract(self, first_operand, second_operand):
         result = first_operand - second_operand
         self.items.append(result)
         return self.items
 
-    def division(self):
-        second_operand = self.items.pop()
-        first_operand = self.items.pop()
+    def division(self, first_operand, second_operand):
         result = first_operand // second_operand
         self.items.append(result)
         return self.items
 
-    def print_stack(self):
+    def stack_calculator(self, data):
+        action_dict = {'+': self.adding,
+                       '-': self.subtract,
+                       '*': self.multiplication,
+                       '/': self.division,
+                       }
+        for element in data:
+            if not action_dict.get(element):
+                self.push(element)
+            else:
+                second_operand = self.items.pop()
+                first_operand = self.items.pop()
+                action_dict[element](first_operand, second_operand)
+        return self.peak()
+
+    def peak(self):
         if self.is_empty():
             print('The stack is empty')
-        print(*self.items)
+        print(self.items[-1])
 
 
 def make_digits(data):
@@ -81,23 +81,11 @@ def make_digits(data):
     return data
 
 
-def stack_calculator(data, stack):
-    for element in data:
-        if not stack.action_dict.get(element):
-            stack.push(element)
-        else:
-            function_name = stack.action_dict.get(element)
-            this_module = sys.modules[__name__]
-            func = getattr(this_module, function_name)
-            func()
-    return stack.print_stack()
-
-
 def main():
     input_data = list(map(str, input().split()))
     data = make_digits(input_data)
     stack = StackCalculator()
-    stack_calculator(data, stack)
+    stack.stack_calculator(data)
 
 
 if __name__ == '__main__':

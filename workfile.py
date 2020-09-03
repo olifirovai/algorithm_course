@@ -1,48 +1,23 @@
 '''
 
-
-
 '''
 
 
-class Schedule:
-    def __init__(self, time_list):
-        self.classes = []
-        self.start_time = time_list[0]
-        self.end_time = time_list[1]
-
-    def add_class(self):
-        self.classes.append([self.start_time, self.end_time])
-
-    def find_earliest_class(self):
-        earliest_class = []
-        while True:
-            for i in range(len(self.classes)):
-                early_class = []
-                if self.classes[i][1] == self.classes[i][0]:
-                    schedule_list.append(self.classes[i])
-                if i == 0:
-                    early_class = self.classes[i]
-                if early_class[1] < self.classes[i][1]:
-                    early_class = self.classes[i]
-                elif early_class[1] == self.classes[i][1]:
-                    early_class = min(early_class[0], self.classes[i][1])
-
-    def make_schedule(self):
-
-        pass
-
-
-schedule_list = []
-
-
 def main():
-    amount = int(input())
-    for obj in range(amount):
-        data = list(map(float, input().split()))
-        obj = Schedule(data)
-        obj.add_class()
+    children_amount = int(input())
+    greed_level = list(map(int, input().split()))
+    cookies_amount = int(input())
+    cookie_size = list(map(int, input().split()))
+    greed_level.sort()
+    cookie_size.sort()
+    child = 0
+    cookie = 0
+    while child < children_amount and cookie < cookies_amount:
+        if greed_level[child] <= cookie_size[cookie]:
+            child += 1
+        cookie += 1
+    return child
 
 
 if __name__ == '__main__':
-    main()
+    print(main())
