@@ -9,6 +9,6 @@ def factorial(n):
     return n * factorial(n - 1)
 
 
-# a = open('input.txt')
-# b = int(a.readline())
+a = open('input.txt')
+b = int(a.readline())
 print(factorial(6))
