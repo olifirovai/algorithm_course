@@ -3,9 +3,8 @@
 
 '''
 
-len_list = int(input())
-find_number = int(input())
-number_list = list(map(int, input().split()))
+
+# номер успешной посылки: 34244671
 
 
 def find_bourder(left_side, right_side, number_list):
@@ -47,14 +46,18 @@ def find_index(find_number, number_list):
     else:
         left_point, right_point = find_bourder(left_side, right_side,
                                                number_list)
-        if find_number >= number_list[left_side] and find_number <= \
-                number_list[left_point]:
+        if (find_number >= number_list[left_side] and find_number
+                <= number_list[left_point]):
             return binary_search(left_side, left_point, number_list,
                                  find_number)
         else:
             return binary_search(right_point, right_side, number_list,
                                  find_number)
 
+
+len_list = int(input())
+find_number = int(input())
+number_list = list(map(int, input().split()))
 
 result = find_index(find_number, number_list)
 print(result)
