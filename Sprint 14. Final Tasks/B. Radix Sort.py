@@ -3,12 +3,14 @@
 '''
 
 
-def counting_sort(arr, exp, n):
+# номер успешной посылки: 34642206
+
+def counting_sort(number_list, digit_place, n):
     output_list = [0 for _ in range(n)]
     count_list = [0 for _ in range(10)]
 
-    for i in range(0, n):
-        index = int((arr[i] / exp))
+    for i in range(n):
+        index = int((number_list[i] / digit_place))
         count_list[(index) % 10] += 1
 
     for i in range(1, 10):
@@ -16,31 +18,26 @@ def counting_sort(arr, exp, n):
 
     i = n - 1
     while i >= 0:
-        index = int((arr[i] / exp))
-        output_list[count_list[(index) % 10] - 1] = arr[i]
+        index = int((number_list[i] / digit_place))
+        output_list[count_list[(index) % 10] - 1] = number_list[i]
         count_list[(index) % 10] -= 1
         i -= 1
 
-    i = 0
-    for i in range(0, len(arr)):
-        arr[i] = output_list[i]
+    return output_list
 
 
-def radixSort(number_list, n):
+def radix_sort(number_list, n):
     max_number = max(number_list)
-    exp = 1
+    digit_place = 1
 
-    while max_number / exp > 1:
-        counting_sort(number_list, exp, n)
-        exp *= 10
+    while max_number / digit_place >= 1:
+        number_list = counting_sort(number_list, digit_place, n)
+        digit_place *= 10
     return number_list
 
 
 if __name__ == "__main__":
     n = int(input())
     number_list = list(map(int, input().split()))
-    number = radixSort(number_list, n)
+    number = radix_sort(number_list, n)
     print(*number)
-
-
-# 2 98545 365 9578 99999 62545 5124 32
