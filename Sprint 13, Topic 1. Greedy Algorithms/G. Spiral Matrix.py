@@ -49,9 +49,8 @@ def main():
     m = int(input())
     count = 1
     new_list = []
-    for i in range(n):
-        new_list.append(0)
-        new_list[i] = []
+    for _ in range(n):
+        new_list.append([])
 
     while count <= n:
         for k in range(n):
