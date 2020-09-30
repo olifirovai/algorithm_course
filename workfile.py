@@ -1,74 +1,181 @@
-from collections import deque
+'''
+
+'''
+import heapq
+
+WIN = ['k', 'o', 'n', 'd', 'r', 'a', 't', 'i', 'y']
 
 
-class Node:
-    def __init__(self, value, left=None, right=None):
-        self.value = value
-        self.right = right
-        self.left = left
+class Rider:
+    def __init__(self, rider):
+        self.rider = rider
 
+    def name(self):
+        for name in self.rider[:1]:
+            return name
 
-def printLevelOrder(root, list=[]):
-    if root is None:
-        return
+    def is_kondrat(self):
+        new_list = WIN
+        for letter in self.name():
+            if letter in new_list:
+                new_list.remove(letter)
 
-    queue = deque()
-    queue.append(root)
-    level_left = 0
-    level_right = 0
-    while (len(queue) > 0):
-        node = queue.popleft()
-        list.append(node.value)
-
-        if node.left is not None:
-            queue.append(node.left)
-            level_left += 1
-
-        if node.right is not None:
-            queue.append(node.right)
-            level_right += 1
-    if level_right == level_left:
-        # print(level_right, level_left)
-        n = 1
-        k = 0
-        f = 1
-        a = []
-        lengh_range = level_right // 2
-        for _ in range(lengh_range + 1):
-            new_list = list[k:f]
-            a.append(new_list)
-            print(f)
-            t = n + n
-            k = n
-            f = n +t
-            n+=n
-
-        return a, list
-    else:
+        if not new_list:
+            return True
         return False
+
+    def points(self):
+        point_list = self.rider[1:]
+        points = sum([int(item) for item in point_list if int(item) > 0])
+        return points
+    #
+    # def __gt__(x, y):
+    #
+    #     if not x.is_kondrat() and not y.is_kondrat():
+    #         if x.points() == y.points():
+    #             return x.name() < y.name()
+    #         return x.points() > y.points()
+    #
+    #     if x.is_kondrat() and y.is_kondrat():
+    #         return x.is_kondrat() == y.is_kondrat()
+    #     return x.is_kondrat() > y.is_kondrat()
+
+    # def __lt__(x, y):
+    #
+    #     if not x.is_kondrat() or y.is_kondrat():
+    #         if x.points() == y.points():
+    #             return x.name() > y.name()
+    #         return x.points() < y.points()
+    #
+    #     if x.is_kondrat() and y.is_kondrat():
+    #         return False
+    #     return x.is_kondrat() < y.is_kondrat()
+
+    # def __gt__(x, y):
+    #     if x.is_kondrat() and y.is_kondrat():
+    #         return True
+    #
+    #     if x.is_kondrat() or y.is_kondrat():
+    #         return x.is_kondrat() > y.is_kondrat()
+    #
+    #     if x.points() == y.points():
+    #         return x.name() < y.name()
+    #     return x.points() > y.points()
+
+    def __lt__(x, y):
+        return x.name() > y.name()
+
+
+    # def __lt__(x, y):
+    #     if x.is_kondrat() and y.is_kondrat():
+    #         return False
+    #
+    #     if x.is_kondrat() or y.is_kondrat():
+    #         return x.is_kondrat() < y.is_kondrat()
+    #
+    #     if x.points() == y.points():
+    #         return x.name() > y.name()
+    #     return x.points() < y.points()
+
+
+# rider_name = 'kondcvhxfghdsfratiy'
+# print(kondratiy(rider_name))
+# rider_list = ['12', '11', '13', '5', '6', '7']
+# points = sum([item for item in rider_list[1:] if int(item) > 0])
+#
+#
+class Comparator_kondrat(str):
+
+    def __gt__(x, y):
+
+        return x.is_kondrat() > y.is_kondrat()
+
+class Comparator_points(str):
+
+    def __gt__(x, y):
+        return x.points() > y.points()
+
+# if x.is_kondrat() and y.is_kondrat():
+#     return True
+#
+# if x.is_kondrat() or y.is_kondrat():
+#     return x.is_kondrat() > y.is_kondrat()
+#
+# if x.points() == y.points():
+#     return x.name() < y.name()
+# return x.points() > y.points()
+
+
+def heapify(rider_list, n, i):
+    largest = i
+    left_child = 2 * i + 1
+    right_child = 2 * i + 2
+
+    if left_child < n and rider_list[i] < rider_list[left_child]:
+        largest = left_child
+
+    if right_child < n and rider_list[largest] < rider_list[right_child]:
+        largest = right_child
+
+    if largest != i:
+        rider_list[i], rider_list[largest] = rider_list[largest], rider_list[i]
+
+        heapify(rider_list, n, largest)
+
+
+def heapSort(rider_list, n):
+    parent = (n - 1) // 2
+    for i in range(parent, -1, -1):
+        heapify(rider_list, n, i)
+
+    for i in range(n - 1, 0, -1):
+        rider_list[i], rider_list[0] = rider_list[0], rider_list[i]
+        heapify(rider_list, i, 0)
 
 
 if __name__ == "__main__":
-    root = Node(1)
-    root.left = Node(2)
+    rider_list = []
 
-    root.left.left = Node(4)
-    root.left.left.left = Node(5)
-    root.left.left.right = Node(6)
+    # n = int(input())
+    # for _ in range(n):
+    #     rider = Rider(list(map(str, input().split())))
+    #     rider_list.append(rider)
+    rider4 = Rider(['ands', '1', '9', '5', '-1', '1'])
+    rider_list.append(rider4)
 
-    root.left.right = Node(3)
-    root.left.right.left = Node(6)
-    root.left.right.right = Node(5)
+    rider5 = Rider(['kondratiy', '0', '2', '5', '0', '-1'])
+    rider_list.append(rider5)
 
-    root.right = Node(2)
-    root.right.left = Node(3)
-    root.right.left.left = Node(5)
-    root.right.left.right = Node(6)
+    rider6 = Rider(['kondratiy', '0', '1', '5', '0', '-1'])
+    rider_list.append(rider6)
 
-    root.right.right = Node(4)
-    root.right.right.left = Node(6)
-    root.right.right.right = Node(5)
+    rider7 = Rider(['kondrafssdtiy', '0', '0', '5', '0', '-1'])
+    rider_list.append(rider7)
 
-    a, list = printLevelOrder(root)
-    print(a, list)
+    rider1 = Rider(['anna', '2', '-4', '5', '0', '1'])
+    rider_list.append(rider1)
 
+    rider2 = Rider(['sam', '1', '9', '5', '0', '1'])
+    rider_list.append(rider2)
+
+    rider3 = Rider(['ands', '1', '9', '5', '0', '1'])
+    rider_list.append(rider3)
+
+
+    # 'kondrafssdtiy', '0', '0', '5', '0', '-1'
+    # 'kondratiy', '0', '1', '5', '0', '-1'
+    # 'kondratiy', '0', '2', '5', '0', '-1'
+    # 'ands', '1', '9', '5', '-1', '1'
+    # 'ands', '1', '9', '5', '0', '1'
+    # 'sam', '1', '9', '5', '0', '1'
+    # 'anna', '1', '-4', '5', '0', '1'
+
+    #
+    lenght = len(rider_list)
+    heapq.heapify(rider_list)
+    # heapSort(rider_list, lenght)
+    sorted_rider_list = (sorted(rider_list, key=Comparator_points))
+
+    sorted_rider_list = (sorted(rider_list, key=Comparator_kondrat))
+    for rider in rider_list:
+        print(*rider.rider)
