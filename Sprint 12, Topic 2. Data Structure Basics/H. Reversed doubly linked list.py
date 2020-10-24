@@ -38,4 +38,6 @@ n3.prev = n2
 n4.prev = n3
 n5.prev = n4
 
-reverse(n1)
+
+if __name__ == '__main__':
+    reverse(n1)

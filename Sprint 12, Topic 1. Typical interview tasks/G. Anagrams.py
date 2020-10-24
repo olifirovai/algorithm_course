@@ -18,4 +18,5 @@ def define_anagrams():
         print('These two words are not anagrams')
 
 
-define_anagrams()
+if __name__ == '__main__':
+    define_anagrams()

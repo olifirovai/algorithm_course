@@ -23,4 +23,5 @@ def find_amount(binary_number):
     print(count_one)
 
 
-find_amount(binary_convert(number))
+if __name__ == '__main__':
+    find_amount(binary_convert(number))

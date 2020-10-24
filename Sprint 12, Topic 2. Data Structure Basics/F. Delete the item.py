@@ -39,4 +39,6 @@ n2 = Node('Second to-do thing', n3)
 n1 = Node('First to-do thing', n2)
 
 node, index = n1, 2
-print(solution(node, index))
+
+if __name__ == '__main__':
+    print(solution(node, index))

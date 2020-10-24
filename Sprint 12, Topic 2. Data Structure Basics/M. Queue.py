@@ -20,7 +20,6 @@ If the queue is deleted from an empty one, type None.
 '''
 
 
-
 class MyQueue:
     def __init__(self):
         self.queue = []
@@ -81,4 +80,5 @@ def solution():
             queue.push(int(float(new_list[m][1])))
 
 
-solution()
+if __name__ == '__main__':
+    solution()

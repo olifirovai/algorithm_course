@@ -3,8 +3,6 @@
 '''
 
 
-# номер успешной посылки: 34868773
-
 def radix_sort(number_list):
     max_number = max(number_list)
     digit_place = 1

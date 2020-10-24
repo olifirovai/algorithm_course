@@ -35,4 +35,5 @@ def sum_numbers(number_one, number_two):
     print(''.join(map(str, c[::-1])))
 
 
-sum_numbers(number_one, number_two)
+if __name__ == '__main__':
+    sum_numbers(number_one, number_two)

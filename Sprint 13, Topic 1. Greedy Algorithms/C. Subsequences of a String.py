@@ -11,6 +11,7 @@ Output format
 Print True if s is a subsequence of t, otherwise False.
 '''
 
+
 def main():
     string_s = input()
     string_t = input()
@@ -18,6 +19,7 @@ def main():
     t_index = 0
     len_s = len(string_s)
     len_t = len(string_t)
+
     while s_index < len_s and t_index < len_t:
         if string_s[s_index] == string_t[t_index]:
             s_index += 1

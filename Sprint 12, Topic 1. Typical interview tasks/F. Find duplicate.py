@@ -15,4 +15,5 @@ def find_duplicate():
     print(*duplicate_list)
 
 
-find_duplicate()
+if __name__ == '__main__':
+    find_duplicate()

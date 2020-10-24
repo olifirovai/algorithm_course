@@ -17,4 +17,5 @@ def define_palindrome():
         print('This phrase or word is not a palindrome')
 
 
-define_palindrome()
+if __name__ == '__main__':
+    define_palindrome()

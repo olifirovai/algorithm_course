@@ -17,4 +17,5 @@ def find_person(person_list):
     print(*person)
 
 
-find_person(person_list)
+if __name__ == '__main__':
+    find_person(person_list)

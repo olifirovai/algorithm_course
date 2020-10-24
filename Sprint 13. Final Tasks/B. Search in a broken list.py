@@ -4,9 +4,6 @@
 '''
 
 
-# номер успешной посылки: 34475228
-
-
 def find_bourder(left_side, right_side, number_list):
     midlle = (left_side + right_side) // 2
 

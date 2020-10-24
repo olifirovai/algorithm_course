@@ -34,4 +34,7 @@ n2 = Node('Second to-do thing', n3)
 n1 = Node('First to-do thing', n2)
 
 node, value = n1,'Third to-do thing'
-print(solution(node, value))
+
+
+if __name__ == '__main__':
+    print(solution(node, value))

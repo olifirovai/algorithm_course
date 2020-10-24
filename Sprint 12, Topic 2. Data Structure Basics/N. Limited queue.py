@@ -83,4 +83,5 @@ def solution():
             queue.push(int(float(new_list[m][1])))
 
 
-solution()
+if __name__ == '__main__':
+    solution()

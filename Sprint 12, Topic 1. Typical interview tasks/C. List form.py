@@ -17,8 +17,12 @@ def list_form(form_len, form, k):
     print(sum)
 
 
-form_len = int(input())
-form = input().replace(" ", "")
-k = int(input())
+def main():
+    form_len = int(input())
+    form = input().replace(" ", "")
+    k = int(input())
+    list_form(form_len, form, k)
 
-list_form(form_len, form, k)
+
+if __name__ == '__main__':
+    main()

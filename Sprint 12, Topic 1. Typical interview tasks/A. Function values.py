@@ -14,4 +14,6 @@ a = list_new[0]
 x = list_new[1]
 b = list_new[2]
 c = list_new[3]
-function_value(a, x, b, c)
+
+if __name__ == '__main__':
+    function_value(a, x, b, c)

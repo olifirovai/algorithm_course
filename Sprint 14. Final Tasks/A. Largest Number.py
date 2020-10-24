@@ -6,8 +6,6 @@ n - amount of integers
 '''
 
 
-# номер успешной посылки: 34601864
-
 class Comparator(str):
     def __lt__(x, y):
         return x + y > y + x

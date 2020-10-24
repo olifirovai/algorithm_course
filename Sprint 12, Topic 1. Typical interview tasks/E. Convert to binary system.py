@@ -12,4 +12,5 @@ def binary_convert(number):
     print(binary_number)
 
 
-binary_convert(int(input()))
+if __name__ == '__main__':
+    binary_convert(int(input()))

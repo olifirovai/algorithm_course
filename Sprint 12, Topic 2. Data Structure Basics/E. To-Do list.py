@@ -27,4 +27,7 @@ n2 = Node('Second to-do thing', n3)
 n1 = Node('First to-do thing', n2)
 
 node = n1
-head = solution(node)
+
+if __name__ == '__main__':
+    head = solution(node)
+    print(head)

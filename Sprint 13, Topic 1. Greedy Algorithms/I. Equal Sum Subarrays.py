@@ -27,4 +27,5 @@ def find_equal_sum(arr, n):
     return False
 
 
-print(find_equal_sum(a, n))
+if __name__ == '__main__':
+    print(find_equal_sum(a, n))

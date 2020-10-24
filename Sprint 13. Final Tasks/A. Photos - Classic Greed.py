@@ -3,8 +3,6 @@
 '''
 
 
-# номер успешной посылки: 34596378
-
 def data_center(n, capacity_list):
     if n < 2:
         return 0

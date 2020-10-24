@@ -21,16 +21,26 @@ def cokies(children_amount, greed_level, cookies_amount, cookie_size):
     cookie_size.sort()
     child = 0
     cookie = 0
+
     while child < children_amount and cookie < cookies_amount:
         if greed_level[child] <= cookie_size[cookie]:
             child += 1
         cookie += 1
+
     return child
 
 
-if __name__ == '__main__':
+def main():
     children_amount = int(input())
     greed_level = list(map(int, input().split()))
     cookies_amount = int(input())
     cookie_size = list(map(int, input().split()))
-    print(cokies(children_amount, greed_level, cookies_amount, cookie_size))
+
+    result = cokies(children_amount, greed_level, cookies_amount, cookie_size)
+
+    return result
+
+
+if __name__ == '__main__':
+    answer = main()
+    print(answer)

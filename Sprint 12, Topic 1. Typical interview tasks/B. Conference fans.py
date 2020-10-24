@@ -18,7 +18,11 @@ def top_university(students_list, amount):
     print(*top_university)
 
 
-students_list = list(map(int, input().split()))
-amount = int(input())
+def main():
+    students_list = list(map(int, input().split()))
+    amount = int(input())
+    top_university(students_list, amount)
 
-top_university(students_list, amount)
+
+if __name__ == '__main__':
+    main()
